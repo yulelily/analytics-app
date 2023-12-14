@@ -19,7 +19,7 @@ export default function VideoFeed() {
         {videos.map((vid: Record<string, any>) => (
           <div
             key={vid.videoId}
-            className="flex flex-col gap-4 w-full hover:bg-gradient-to-r from-fuchsia-100/50 to-teal-100/50 py-8 px-8 border-2 border-white/50 rounded-lg"
+            className="flex flex-col gap-4 w-full hover:bg-gradient-to-r from-fuchsia-100/50 to-teal-100/50 shadow-md py-8 px-8 border-2 border-white/50 rounded-lg"
           >
             <VideoCard
               publishedAt={vid.publishedAt}
