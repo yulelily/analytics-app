@@ -14,14 +14,14 @@ const VideoCard: React.FC<VideoCardProps> = ({
   maxViewCount,
 }) => {
   return (
-    <div className="grid justify-center items-center gap-4 w-full">
+    <div className="grid justify-center items-center gap-4 w-full text-center">
       <h1 className="text-2xl text-semibold">{title}</h1>
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 flex justify-center items-center">
         {/* next.js Image is blurry... */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="w-[480px]" src={thumbnail} alt="thumbnail" />
       </div>
-      <div>
+      <div className="flex flex-col justify-center items-center py-1">
         <p>Publish Date: {format(new Date(publishedAt), "MMM d, y")}</p>
         <p>Total Views: {maxViewCount}</p>
       </div>

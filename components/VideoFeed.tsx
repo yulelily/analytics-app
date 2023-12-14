@@ -14,12 +14,12 @@ export default function VideoFeed() {
   }
 
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex justify-center items-center w-screen">
       <div className="grid h-full w-full justify-center items-center gap-4 my-[16px]">
         {videos.map((vid: Record<string, any>) => (
           <div
             key={vid.videoId}
-            className="hover:bg-gradient-to-r from-fuchsia-100/50 to-teal-100/50 py-8 border-2 border-white/50 rounded-lg"
+            className="flex flex-col gap-4 w-full hover:bg-gradient-to-r from-fuchsia-100/50 to-teal-100/50 py-8 px-8 border-2 border-white/50 rounded-lg"
           >
             <VideoCard
               publishedAt={vid.publishedAt}
