@@ -1,13 +1,13 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import fetcher from "@/libs/fetcher";
+import { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
-  name: string;
-};
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse,
 ) {
-  res.status(200).json({ name: "John Doe" });
+  const response = await fetcher("http://localhost:3000/api/videos");
+  // const data = await response.json();
+
+  console.log(response);
+  return res.status(200).json("ok");
 }

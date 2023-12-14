@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  @apply h-full bg-slate-800 bg-gradient-to-r from-indigo-100 from-20% to-sky-200
+}
