@@ -116,21 +116,21 @@ const VideoGraph: React.FC<VideoGraphProps> = ({
   );
 
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       <button
         type="button"
         onClick={(e) => onClick(e)}
-        className="cursor-pointer bg-rose-50 p-3 rounded-full"
+        className="cursor-pointer bg-rose-50 py-1 px-3 rounded-md"
       >
-        View Graphs
+        {display ? "Hide" : "View Graphs"}
       </button>
-      <div className="w-9/12">
+      <div className="w-11/12">
         {display && <Line options={options} data={dataViews} />}
       </div>
-      <div className="w-9/12">
+      <div className="w-11/12">
         {display && <Line options={options} data={dataLikes} />}
       </div>
-      <div className="w-9/12">
+      <div className="w-11/12">
         {display && <Line options={options} data={dataComments} />}
       </div>
     </div>
