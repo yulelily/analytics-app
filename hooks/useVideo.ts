@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 const useVideo = (videoId: string) => {
   const { data, error, isLoading, mutate } = useSWR(
-    videoId ? `http://localhost:3000/api/videos/${videoId}` : null,
+    videoId ? `/api/videos/${videoId}` : null,
     fetcher,
   );
 

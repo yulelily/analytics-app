@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 const useVideos = () => {
   const { data, error, isLoading, mutate } = useSWR(
-    `http://localhost:3000/api/videos`,
+    `/api/videos`,
     fetcher,
   );
 
