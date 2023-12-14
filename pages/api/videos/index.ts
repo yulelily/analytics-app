@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/libs/prismadb";
-import parseToJson from "@/libs/parseToJson";
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,10 +15,6 @@ export default async function handler(
         maxViewCount: "desc",
       },
     });
-
-    for (let i = 0; i < videos.length; i++) {
-      videos[i] = parseToJson(videos[i]);
-    }
 
     return res.status(200).json(videos);
   } catch (error) {

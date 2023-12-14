@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/libs/prismadb";
-import { parseSetCookie } from "next/dist/compiled/@edge-runtime/cookies";
-import parseToJson from "@/libs/parseToJson";
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,8 +22,7 @@ export default async function handler(
       },
     });
 
-    const parsedVid = parseToJson(vid);
-    return res.status(200).json(parsedVid);
+    return res.status(200).json(vid);
   } catch (error) {
     console.log(error);
     return res.status(400).end();

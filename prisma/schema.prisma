@@ -17,7 +17,7 @@ model Video {
   title String
   videoId String @unique
   thumbnail String
-  maxViewCount BigInt
+  maxViewCount Int
   updatedAt String[]
   viewCount String[]
   likeCount String[]

@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 interface VideoCardProps {
   publishedAt: string;
   title: string;
@@ -20,7 +22,7 @@ const VideoCard: React.FC<VideoCardProps> = ({
       </div>
       <div>
         <h1>{title}</h1>
-        <p>published at: {publishedAt}</p>
+        <p>published at: {format(new Date(publishedAt), "MMM d, y")}</p>
         <p>views: {maxViewCount}</p>
       </div>
     </div>
