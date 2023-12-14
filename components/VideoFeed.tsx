@@ -16,14 +16,20 @@ export default function VideoFeed() {
   return (
     <>
       {videos.map((vid: Record<string, any>) => (
-        <div key={vid.videoId} >
+        <div key={vid.videoId}>
           <VideoCard
             publishedAt={vid.publishedAt}
             title={vid.title}
             thumbnail={vid.thumbnail}
             maxViewCount={vid.maxViewCount}
           />
-          <VideoGraph updatedAt={vid.updatedAt} viewCount={vid.viewCount} likeCount={vid.likeCount} commentCount={vid.commentCount} />
+          <VideoGraph
+            title={vid.title}
+            updatedAt={vid.updatedAt}
+            viewCount={vid.viewCount}
+            likeCount={vid.likeCount}
+            commentCount={vid.commentCount}
+          />
         </div>
       ))}
     </>

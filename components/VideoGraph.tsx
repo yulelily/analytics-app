@@ -1,27 +1,66 @@
 import { format } from "date-fns";
 import { useCallback, useMemo, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+);
+
+ChartJS.defaults.color = "Black";
 
 interface VideoGraphProps {
+  title: string;
   updatedAt: string[];
   viewCount: string[];
   likeCount: string[];
   commentCount: string[];
 }
 
-const VideoGraph: React.FC<VideoGraphProps> = ({updatedAt, viewCount, likeCount, commentCount}) => {
+const VideoGraph: React.FC<VideoGraphProps> = ({
+  title,
+  updatedAt,
+  viewCount,
+  likeCount,
+  commentCount,
+}) => {
   const [display, setDisplay] = useState(false);
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: `${title}`,
+      },
+    },
+  };
 
   const labels = useMemo(() => {
     return updatedAt.map((t: string) => {
-      return format(new Date(t), "MMM d, y")
+      return format(new Date(t), "PP");
     });
   }, [updatedAt]);
 
-  const data = useMemo(() => {
+  const dataViews = useMemo(() => {
     return {
       labels: labels.map((data) => data),
       datasets: [
@@ -29,37 +68,73 @@ const VideoGraph: React.FC<VideoGraphProps> = ({updatedAt, viewCount, likeCount,
           label: "Views",
           data: viewCount.map((data) => data),
           borderColor: "DeepSkyBlue",
-          backgroundColor: "LightSkyBlue"
-          },
+          backgroundColor: "DeepSkyBlue",
+        },
+      ],
+    };
+  }, [labels, viewCount]);
+
+  const dataLikes = useMemo(() => {
+    return {
+      labels: labels.map((data) => data),
+      datasets: [
         {
           label: "Likes",
-          data: likeCount.map((data) => data)
+          data: likeCount.map((data) => data),
+          borderColor: "Plum",
+          backgroundColor: "Plum",
         },
+      ],
+    };
+  }, [labels, likeCount]);
+
+  const dataComments = useMemo(() => {
+    return {
+      labels: labels.map((data) => data),
+      datasets: [
         {
           label: "Comments",
-          data: commentCount.map((data) => data)
-        }
+          data: commentCount.map((data) => data),
+          borderColor: "PaleVioletRed",
+          backgroundColor: "PaleVioletRed",
+        },
       ],
+    };
+  }, [labels, commentCount]);
 
-    }
-  }, [labels, viewCount, likeCount, commentCount]);
+  const onClick = useCallback(
+    (e: any) => {
+      e.stopPropagation();
 
-  const onClick = useCallback((e: any) => {
-    e.stopPropagation();
-
-    if (display) {
-      setDisplay(false);
-    } else {
-      setDisplay(true);
-    }
-  }, [display]);
+      if (display) {
+        setDisplay(false);
+      } else {
+        setDisplay(true);
+      }
+    },
+    [display],
+  );
 
   return (
     <div>
-      <button type="button" onClick={(e) => onClick(e)} className="cursor-pointer bg-rose-50 p-3 rounded-full" >View Graphs</button>
-      {display && <Line data={data} />}
+      <button
+        type="button"
+        onClick={(e) => onClick(e)}
+        className="cursor-pointer bg-rose-50 p-3 rounded-full"
+      >
+        View Graphs
+      </button>
+      <div className="w-9/12">
+        {display && <Line options={options} data={dataViews} />}
+      </div>
+      <div className="w-9/12">
+        {display && <Line options={options} data={dataLikes} />}
+      </div>
+      <div className="w-9/12">
+        {display && <Line options={options} data={dataComments} />}
+      </div>
     </div>
   );
-}
+};
 
 export default VideoGraph;
