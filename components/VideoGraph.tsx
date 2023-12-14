@@ -120,7 +120,7 @@ const VideoGraph: React.FC<VideoGraphProps> = ({
       <button
         type="button"
         onClick={(e) => onClick(e)}
-        className="cursor-pointer bg-rose-50 py-1 px-3 rounded-md"
+        className="cursor-pointer hover:bg-gradient-to-r from-rose-50 to-cyan-100 py-1 px-3 border-2 border-white/50 rounded-md"
       >
         {display ? "Hide" : "View Graphs"}
       </button>

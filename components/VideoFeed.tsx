@@ -17,7 +17,10 @@ export default function VideoFeed() {
     <div className="flex justify-center items-center w-full">
       <div className="grid h-full w-full justify-center items-center gap-4 my-[16px]">
         {videos.map((vid: Record<string, any>) => (
-          <div key={vid.videoId} className="bg-blue-300/30 border-zinc-900 py-8">
+          <div
+            key={vid.videoId}
+            className="hover:bg-gradient-to-r from-fuchsia-100/50 to-teal-100/50 py-8 border-2 border-white/50 rounded-lg"
+          >
             <VideoCard
               publishedAt={vid.publishedAt}
               title={vid.title}

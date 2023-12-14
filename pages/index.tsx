@@ -4,7 +4,7 @@ import VideoFeed from "@/components/VideoFeed";
 export default function Home() {
   return (
     <>
-      <Header label="TO DO X TXT Analytics" />
+      <Header label="TO DO X TXT - Most Popular" />
       <VideoFeed />
     </>
   );
